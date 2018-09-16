@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pws.pwswebservice.mapper.DynamicInfoMapper">
+  <resultMap id="BaseResultMap" type="com.pws.pwswebservice.model.DynamicInfo">
+    <id column="dynamic_info_id" jdbcType="INTEGER" property="dynamicInfoId" />
+    <result column="picture_address" jdbcType="VARCHAR" property="pictureAddress" />
+    <result column="company_id" jdbcType="INTEGER" property="companyId" />
+    <result column="time" jdbcType="TIMESTAMP" property="time" />
+    <result column="like_number" jdbcType="INTEGER" property="likeNumber" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.pws.pwswebservice.model.DynamicInfo">
+    <result column="context" jdbcType="LONGVARCHAR" property="context" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    dynamic_info_id, picture_address, company_id, time, like_number
+  </sql>
+  <sql id="Blob_Column_List">
+    context
+  </sql>
+  <insert id="insertSelective" parameterType="com.pws.pwswebservice.model.DynamicInfo">
+    insert into dynamic_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="dynamicInfoId != null">
+        dynamic_info_id,
+      </if>
+      <if test="pictureAddress != null">
+        picture_address,
+      </if>
+      <if test="companyId != null">
+        company_id,
+      </if>
+      <if test="time != null">
+        time,
+      </if>
+      <if test="likeNumber != null">
+        like_number,
+      </if>
+      <if test="context != null">
+        context,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="dynamicInfoId != null">
+        #{dynamicInfoId,jdbcType=INTEGER},
+      </if>
+      <if test="pictureAddress != null">
+        #{pictureAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="companyId != null">
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="time != null">
+        #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="likeNumber != null">
+        #{likeNumber,jdbcType=INTEGER},
+      </if>
+      <if test="context != null">
+        #{context,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.pws.pwswebservice.model.DynamicInfo">
+    update dynamic_info
+    <set>
+      <if test="pictureAddress != null">
+        picture_address = #{pictureAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="companyId != null">
+        company_id = #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="time != null">
+        time = #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="likeNumber != null">
+        like_number = #{likeNumber,jdbcType=INTEGER},
+      </if>
+      <if test="context != null">
+        context = #{context,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where dynamic_info_id = #{dynamicInfoId,jdbcType=INTEGER}
+  </update>
+</mapper>

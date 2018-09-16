@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pws.pwswebservice.mapper.JoinActivityMapper">
+  <resultMap id="BaseResultMap" type="com.pws.pwswebservice.model.JoinActivity">
+    <id column="user_id" jdbcType="INTEGER" property="userId" />
+    <id column="activity_id" jdbcType="INTEGER" property="activityId" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="comment" jdbcType="INTEGER" property="comment" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    user_id, activity_id, status, comment
+  </sql>
+  <insert id="insertSelective" parameterType="com.pws.pwswebservice.model.JoinActivity">
+    insert into join_activity
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="activityId != null">
+        activity_id,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="comment != null">
+        comment,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="activityId != null">
+        #{activityId,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="comment != null">
+        #{comment,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.pws.pwswebservice.model.JoinActivity">
+    update join_activity
+    <set>
+      <if test="status != null">
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="comment != null">
+        comment = #{comment,jdbcType=INTEGER},
+      </if>
+    </set>
+    where user_id = #{userId,jdbcType=INTEGER}
+      and activity_id = #{activityId,jdbcType=INTEGER}
+  </update>
+</mapper>
