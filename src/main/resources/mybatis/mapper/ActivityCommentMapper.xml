@@ -2,8 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.pws.pwswebservice.mapper.ActivityCommentMapper">
   <resultMap id="BaseResultMap" type="com.pws.pwswebservice.model.ActivityComment">
-    <id column="dynamic_info_comment_id" jdbcType="INTEGER" property="dynamicInfoCommentId" />
-    <result column="dynamic_info_id" jdbcType="INTEGER" property="dynamicInfoId" />
+    <id column="activity_comment_id" jdbcType="INTEGER" property="activityCommentId" />
+    <result column="activity_id" jdbcType="INTEGER" property="activityId" />
     <result column="time" jdbcType="TIMESTAMP" property="time" />
     <result column="user_id" jdbcType="INTEGER" property="userId" />
     <result column="company_id" jdbcType="INTEGER" property="companyId" />
@@ -14,7 +14,7 @@
     <result column="context" jdbcType="LONGVARCHAR" property="context" />
   </resultMap>
   <sql id="Base_Column_List">
-    dynamic_info_comment_id, dynamic_info_id, time, user_id, company_id, first_comment_id, 
+    activity_comment_id, activity_id, time, user_id, company_id, first_comment_id,
     like_number
   </sql>
   <sql id="Blob_Column_List">
@@ -23,11 +23,11 @@
   <insert id="insertSelective" parameterType="com.pws.pwswebservice.model.ActivityComment">
     insert into activity_comment
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="dynamicInfoCommentId != null">
-        dynamic_info_comment_id,
+      <if test="activityCommentId != null">
+        activity_comment_id,
       </if>
-      <if test="dynamicInfoId != null">
-        dynamic_info_id,
+      <if test="activityId != null">
+        activity_id,
       </if>
       <if test="time != null">
         time,
@@ -49,11 +49,11 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="dynamicInfoCommentId != null">
-        #{dynamicInfoCommentId,jdbcType=INTEGER},
+      <if test="activityCommentId != null">
+        #{activityCommentId,jdbcType=INTEGER},
       </if>
-      <if test="dynamicInfoId != null">
-        #{dynamicInfoId,jdbcType=INTEGER},
+      <if test="activityId != null">
+        #{activityId,jdbcType=INTEGER},
       </if>
       <if test="time != null">
         #{time,jdbcType=TIMESTAMP},
@@ -78,8 +78,8 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.pws.pwswebservice.model.ActivityComment">
     update activity_comment
     <set>
-      <if test="dynamicInfoId != null">
-        dynamic_info_id = #{dynamicInfoId,jdbcType=INTEGER},
+      <if test="activityId != null">
+        activity_id = #{activityId,jdbcType=INTEGER},
       </if>
       <if test="time != null">
         time = #{time,jdbcType=TIMESTAMP},
@@ -100,6 +100,10 @@
         context = #{context,jdbcType=LONGVARCHAR},
       </if>
     </set>
-    where dynamic_info_comment_id = #{dynamicInfoCommentId,jdbcType=INTEGER}
+    where activity_comment_id = #{activityCommentId,jdbcType=INTEGER}
   </update>
+
+  <select id="selectByActivityId" resultMap="BaseResultMap">
+    SELECT * FROM activity_comment WHERE activity_id = #{activityId,jdbcType=INTEGER} and first_comment_id = 0
+  </select>
 </mapper>

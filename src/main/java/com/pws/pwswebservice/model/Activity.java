@@ -21,7 +21,7 @@ public class Activity {
 
     private Date publishTime;
 
-    private Byte status;
+    private Integer status;
 
     private String uploadText;
 
@@ -99,11 +99,11 @@ public class Activity {
         this.publishTime = publishTime;
     }
 
-    public Byte getStatus() {
+    public Integer getStatus() {
         return status;
     }
 
-    public void setStatus(Byte status) {
+    public void setStatus(Integer status) {
         this.status = status;
     }
 

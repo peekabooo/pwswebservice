@@ -21,4 +21,19 @@ public class BaseJsonResponse implements Serializable, Cloneable {
         this.returnMsg = "";
     }
 
+    public String getReturnCode() {
+        return returnCode;
+    }
+
+    public String getReturnMsg() {
+        return returnMsg;
+    }
+
+    public void setReturnCode(String returnCode) {
+        this.returnCode = returnCode;
+    }
+
+    public void setReturnMsg(String returnMsg) {
+        this.returnMsg = returnMsg;
+    }
 }

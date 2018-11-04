@@ -2,11 +2,9 @@ package com.pws.pwswebservice.mapper;
 
 import com.pws.pwswebservice.model.JoinActivity;
 import com.pws.pwswebservice.model.JoinActivityKey;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.ResultMap;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
+
+import java.util.List;
 
 public interface JoinActivityMapper {
     @Delete({
@@ -46,4 +44,6 @@ public interface JoinActivityMapper {
           "and activity_id = #{activityId,jdbcType=INTEGER}"
     })
     int updateByPrimaryKey(JoinActivity record);
+
+    List<JoinActivity> selectByUserId(int userId);
 }

@@ -5,6 +5,7 @@ public class CollectionKey {
 
     private Integer activityId;
 
+
     public Integer getUserId() {
         return userId;
     }
@@ -20,4 +21,5 @@ public class CollectionKey {
     public void setActivityId(Integer activityId) {
         this.activityId = activityId;
     }
+
 }

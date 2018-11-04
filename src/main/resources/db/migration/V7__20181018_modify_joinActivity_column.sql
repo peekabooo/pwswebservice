@@ -1,0 +1,1 @@
+ALTER TABLE join_activity CHANGE COLUMN comment comment text;

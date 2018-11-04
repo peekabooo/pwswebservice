@@ -1,6 +1,7 @@
 package com.pws.pwswebservice.dto.user;
 
 import com.pws.pwswebservice.dto.BaseJsonResponse;
+import com.pws.pwswebservice.dto.Token;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -13,4 +14,22 @@ import lombok.EqualsAndHashCode;
 @Data
 public class UserLoginResponse extends BaseJsonResponse {
     private String token;
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    @Override
+    public String getReturnCode() {
+        return super.getReturnCode();
+    }
+
+    @Override
+    public String getReturnMsg() {
+        return super.getReturnMsg();
+    }
 }

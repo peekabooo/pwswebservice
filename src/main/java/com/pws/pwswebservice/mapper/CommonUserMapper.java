@@ -26,6 +26,19 @@ public interface CommonUserMapper {
     })
     int insert(CommonUser record);
 
+    @Options(useGeneratedKeys=true,keyProperty="userId")
+    @Insert({
+            "insert into common_user (telephone,",
+            " password,",
+            "personal_information)",
+            "values (#{telephone,jdbcType=VARCHAR}, ",
+            "#{password,jdbcType=VARCHAR},",
+            "#{personalInformation,jdbcType=LONGVARCHAR})"
+    })
+    int registerInsert(CommonUser record);
+
+
+
     @Select({
             "select",
             "user_id, nick_name, real_name, gender, telephone, university, department, student_id, ",
@@ -43,6 +56,22 @@ public interface CommonUserMapper {
     })
     @ResultMap("BaseResultMap")
     CommonUser findByTelephone(@Param("telephone") String telephone);
+
+    @Select({
+            "select *",
+            "from common_user",
+            "where telephone = #{telephone,jdbcType=VARCHAR}"
+    })
+    @ResultMap("BaseResultMap")
+    CommonUser findRecordByTelephone(@Param("telephone") String telephone);
+
+    @Select({
+            "select user_id",
+            "from common_user",
+            "where telephone = #{telephone,jdbcType=VARCHAR}"
+    })
+    @ResultMap("BaseResultMap")
+    int selectUserIdByTelephone(@Param("telephone") String telephone);
 
     @Update({
             "update common_user",
@@ -76,4 +105,20 @@ public interface CommonUserMapper {
             "where user_id = #{userId,jdbcType=INTEGER}"
     })
     int updateByPrimaryKey(CommonUser record);
+
+    @Update({
+            "update common_user",
+            "set nick_name = #{nickName,jdbcType=VARCHAR},",
+            "real_name = #{realName,jdbcType=VARCHAR},",
+            "gender = #{gender,jdbcType=TINYINT},",
+            "university = #{university,jdbcType=VARCHAR},",
+            "department = #{department,jdbcType=VARCHAR},",
+            "student_id = #{studentId,jdbcType=VARCHAR},",
+            "personal_information = #{info,jdbcType=VARCHAR}",
+            "where user_id = #{userId,jdbcType=INTEGER}"
+    })
+    int modifyInfo(@Param("userId") int userId,@Param("nickName") String nickName,
+                   @Param("realName") String realName,@Param("studentId") String studentId,@Param("gender") int gender,
+                   @Param("department") String department,@Param("university")String university,@Param("info") String info);
+
 }

@@ -1,11 +1,7 @@
 package com.pws.pwswebservice.mapper;
 
 import com.pws.pwswebservice.model.Group;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.ResultMap;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 
 public interface GroupMapper {
     @Delete({
@@ -21,6 +17,15 @@ public interface GroupMapper {
         "#{memberNum,jdbcType=INTEGER}, #{companyId,jdbcType=INTEGER})"
     })
     int insert(Group record);
+
+    @Options(useGeneratedKeys = true,keyProperty = "groupId")
+    @Insert({
+            "insert into `group` (group_name, ",
+            "member_num, company_id)",
+            "values (#{groupName,jdbcType=VARCHAR}, ",
+            "#{memberNum,jdbcType=INTEGER}, #{companyId,jdbcType=INTEGER})"
+    })
+    int insertGroup(Group record);
 
     int insertSelective(Group record);
 

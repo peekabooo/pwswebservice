@@ -3,9 +3,9 @@ package com.pws.pwswebservice.model;
 import java.util.Date;
 
 public class DynamicInfoComment {
-    private Integer activityCommentId;
+    private Integer dynamicInfoCommentId;
 
-    private Integer activityId;
+    private Integer dynamicInfoId;
 
     private Date time;
 
@@ -19,20 +19,20 @@ public class DynamicInfoComment {
 
     private String context;
 
-    public Integer getActivityCommentId() {
-        return activityCommentId;
+    public Integer getDynamicInfoCommentId() {
+        return dynamicInfoCommentId;
     }
 
-    public void setActivityCommentId(Integer activityCommentId) {
-        this.activityCommentId = activityCommentId;
+    public void setDynamicInfoCommentId(Integer dynamicInfoCommentId) {
+        this.dynamicInfoCommentId = dynamicInfoCommentId;
     }
 
-    public Integer getActivityId() {
-        return activityId;
+    public Integer getDynamicInfoId() {
+        return dynamicInfoId;
     }
 
-    public void setActivityId(Integer activityId) {
-        this.activityId = activityId;
+    public void setDynamicInfoId(Integer dynamicInfoId) {
+        this.dynamicInfoId = dynamicInfoId;
     }
 
     public Date getTime() {

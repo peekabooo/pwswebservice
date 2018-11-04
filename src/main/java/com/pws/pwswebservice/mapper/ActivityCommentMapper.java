@@ -1,11 +1,9 @@
 package com.pws.pwswebservice.mapper;
 
 import com.pws.pwswebservice.model.ActivityComment;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.ResultMap;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
+
+import java.util.List;
 
 public interface ActivityCommentMapper {
     @Delete({
@@ -64,4 +62,19 @@ public interface ActivityCommentMapper {
         "where dynamic_info_comment_id = #{dynamicInfoCommentId,jdbcType=INTEGER}"
     })
     int updateByPrimaryKey(ActivityComment record);
+
+    @Options(useGeneratedKeys=true,keyProperty="activityCommentId",keyColumn="GENERATED_KEY")
+    @Insert({
+            "insert into activity_comment (activity_id, ",
+            "time, user_id, ",
+            "company_id, first_comment_id, ",
+            "context)",
+            "values ( #{activityId,jdbcType=INTEGER}, ",
+            "#{time,jdbcType=TIMESTAMP}, #{userId,jdbcType=INTEGER}, ",
+            "#{companyId,jdbcType=INTEGER}, #{firstCommentId,jdbcType=INTEGER}, ",
+            "#{context,jdbcType=LONGVARCHAR})"
+    })
+    int insertMainComment(ActivityComment record);
+
+    List<ActivityComment> selectByActivityId(@Param("activityId") int activityId);
 }

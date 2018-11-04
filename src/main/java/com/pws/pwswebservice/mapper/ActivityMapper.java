@@ -1,11 +1,9 @@
 package com.pws.pwswebservice.mapper;
 
 import com.pws.pwswebservice.model.Activity;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.ResultMap;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
+
+import java.util.List;
 
 public interface ActivityMapper {
     @Delete({
@@ -14,14 +12,15 @@ public interface ActivityMapper {
     })
     int deleteByPrimaryKey(Integer activityId);
 
+    @Options(useGeneratedKeys=true,keyProperty="activityId")
     @Insert({
-        "insert into activity (activity_id, activity_name, ",
+        "insert into activity ( activity_name, ",
         "type_id, company_id, ",
         "des_text, registration_text, ",
         "deadline, quit_time, ",
         "publish_time, status, ",
         "upload_text, description)",
-        "values (#{activityId,jdbcType=INTEGER}, #{activityName,jdbcType=VARCHAR}, ",
+        "values ( #{activityName,jdbcType=VARCHAR}, ",
         "#{typeId,jdbcType=INTEGER}, #{companyId,jdbcType=INTEGER}, ",
         "#{desText,jdbcType=VARCHAR}, #{registrationText,jdbcType=VARCHAR}, ",
         "#{deadline,jdbcType=TIMESTAMP}, #{quitTime,jdbcType=TIMESTAMP}, ",
@@ -76,4 +75,15 @@ public interface ActivityMapper {
         "where activity_id = #{activityId,jdbcType=INTEGER}"
     })
     int updateByPrimaryKey(Activity record);
+
+
+    List<Activity> selectAllAsc();
+
+    List<Activity> selectAllDesc();
+
+    List<Activity> selectByTagAsc(@Param("typeId") int typeId);
+
+    List<Activity> selectByTagDesc(@Param("typeId") int typeId);
+
+    List<Activity> selectAllCollectedActivities(@Param("userId")int userId);
 }

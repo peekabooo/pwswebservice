@@ -142,4 +142,22 @@
     </set>
     where activity_id = #{activityId,jdbcType=INTEGER}
   </update>
+  <select id="selectAllAsc" resultMap="BaseResultMap">
+    SELECT * from activity ORDER BY publish_time ASC LIMIT 100
+  </select>
+
+  <select id="selectAllDesc" resultMap="BaseResultMap">
+    SELECT * from activity ORDER BY publish_time DESC LIMIT 100
+  </select>
+  <select id="selectByTagAsc" resultMap="BaseResultMap">
+    SELECT * from activity WHERE type_id = #{typeId,jdbcType=INTEGER} ORDER BY publish_time DESC LIMIT 100
+  </select>
+
+  <select id="selectByTagDesc" resultMap="BaseResultMap">
+    SELECT * from activity WHERE type_id = #{typeId,jdbcType=INTEGER} ORDER BY publish_time DESC LIMIT 100
+  </select>
+  <select id="selectAllCollectedActivities" resultMap="BaseResultMap">
+    SELECT * FROM activity WHERE activity_id in (SELECT activity_id FROM collection WHERE user_id = #{userId})
+  </select>
+
 </mapper>

@@ -1,23 +1,43 @@
 package com.pws.pwswebservice.model;
 
 public class JoinActivity extends JoinActivityKey {
-    private Byte status;
+    private Integer userId;
 
-    private Integer comment;
+    private Integer activityId;
 
-    public Byte getStatus() {
+    private Integer status;
+
+    private String comment;
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
+    public Integer getActivityId() {
+        return activityId;
+    }
+
+    public void setActivityId(Integer activityId) {
+        this.activityId = activityId;
+    }
+
+    public Integer getStatus() {
         return status;
     }
 
-    public void setStatus(Byte status) {
+    public void setStatus(Integer status) {
         this.status = status;
     }
 
-    public Integer getComment() {
+    public String getComment() {
         return comment;
     }
 
-    public void setComment(Integer comment) {
+    public void setComment(String comment) {
         this.comment = comment;
     }
 }

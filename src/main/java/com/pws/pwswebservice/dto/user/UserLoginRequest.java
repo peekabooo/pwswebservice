@@ -11,4 +11,13 @@ import lombok.Data;
 public class UserLoginRequest {
     private String telephone;
     private String password;
+
+    public String getPassword() {
+        return password;
+    }
+
+    public String getTelephone() {
+        return telephone;
+    }
+
 }

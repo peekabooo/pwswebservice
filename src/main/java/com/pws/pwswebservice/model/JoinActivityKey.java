@@ -20,4 +20,6 @@ public class JoinActivityKey {
     public void setActivityId(Integer activityId) {
         this.activityId = activityId;
     }
+
+
 }

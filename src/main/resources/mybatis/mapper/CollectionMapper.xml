@@ -24,4 +24,45 @@
       </if>
     </trim>
   </insert>
+  
+  <!--<resultMap id="ActivityCollection" type="com.pws.pwswebservice.model.Activity">
+    <id column="activity_id" jdbcType="INTEGER" property="activityId" />
+    <result column="activity_name" jdbcType="VARCHAR" property="activityName" />
+    <result column="type_id" jdbcType="INTEGER" property="typeId" />
+    <result column="company_id" jdbcType="INTEGER" property="companyId" />
+    <result column="des_text" jdbcType="VARCHAR" property="desText" />
+    <result column="registration_text" jdbcType="VARCHAR" property="registrationText" />
+    <result column="deadline" jdbcType="TIMESTAMP" property="deadline" />
+    <result column="quit_time" jdbcType="TIMESTAMP" property="quitTime" />
+    <result column="publish_time" jdbcType="TIMESTAMP" property="publishTime" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="upload_text" jdbcType="VARCHAR" property="uploadText" />
+    <association property="activityId" javaType="com.pws.pwswebservice.model.CollectionKey"
+                 column="activity_id" select="">
+
+    </association>
+  </resultMap>-->
+
+  <!--<resultMap id="ActivityCollection" type="com.pws.pwswebservice.model.CollectionKey">
+    <id column="user_id" jdbcType="INTEGER" property="userId"/>
+    <id column="activity_id" jdbcType="INTEGER" property="activityId"/>
+    <collection property="activityId" ofType="com.pws.pwswebservice.model.Activity">
+      <id column="activity_id" jdbcType="INTEGER" property="activityId" />
+      <result column="activity_name" jdbcType="VARCHAR" property="activityName" />
+      <result column="type_id" jdbcType="INTEGER" property="typeId" />
+      <result column="company_id" jdbcType="INTEGER" property="companyId" />
+      <result column="des_text" jdbcType="VARCHAR" property="desText" />
+      <result column="registration_text" jdbcType="VARCHAR" property="registrationText" />
+      <result column="deadline" jdbcType="TIMESTAMP" property="deadline" />
+      <result column="quit_time" jdbcType="TIMESTAMP" property="quitTime" />
+      <result column="publish_time" jdbcType="TIMESTAMP" property="publishTime" />
+      <result column="status" jdbcType="TINYINT" property="status" />
+      <result column="upload_text" jdbcType="VARCHAR" property="uploadText" />
+    </collection>
+  </resultMap>
+  <select id="selectByPrimaryKey" resultMap="ActivityCollection">
+      SELECT * FROM collection c,activity a WHERE c.activity_id = a.activity_id AND c.user_id =#{userId,jdbcType=INTEGER}
+  </select>-->
+
+
 </mapper>
